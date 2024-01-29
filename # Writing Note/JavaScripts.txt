@@ -1,0 +1,180 @@
+** The Different between let and var
+//var = only limit to the function declared
+//let = for block scope, usually loop and condition, outside the {} backet, can't access anymore
+//JavaScript of function no need state it's return type
+//When u want iterate all array element, is use "<" for length !
+//You can make function inside function, only the function outter can access, inner of function is hidden to everywhere (security)
+function example() {
+  if (true) {
+    var x = 10; // Function-scoped
+    let y = 20; // Block-scoped
+  }
+
+  console.log(x); // 10 (visible outside if block)
+  console.log(y); // Error: y is not defined (not visible outside if block)
+  console.log(typeof x)
+  console.log(x.toLocaleString("de-DE", {style: "currency", currency: "USD"})); // en-US | hi-IN
+}
+================================================================================
+** quote string and URL** 
+// string are immutable, can't change it's char by using [0]
+// length always not start from 0
+
+var myString = "I\'m \"pig\""
+var myUrl = '<a href="https://www.google.com">LINK</a>' // single quote also can represent string
+myString.replaceAll("\","-")
+myString.slice(2) // it is similar to subString
+
+\' single quote
+\" double quote
+\\ backslash
+\n newline
+\r carriage return
+\t tab
+\b backspace
+================================================================================
+** Array **
+function arrayFunc(){
+	var myArray = [["quan", 12], ["Jane", 22]] 
+	myArray.push(["Last Person", 40]) // add at last element
+	myArray.unshift(["First Person", 40]) // add at first element
+	myArray.pop() // remove last element 
+	myArray.shift() // remove from first element
+	myArray.sort().reverse()
+	myArray.sort(x,y => y - x)
+	
+	myArray.filter(x => x >= 18)
+	myArray.forEach(print); // pass in function
+	newArray = myArray.map(x => Math.pow(element, 2))// execute provided callback function, once for each array element AND creates a new array, calculation
+	newArray = myArray.reduce(x -> x + element)// reduces an array to a single value, x is accumulative, element is next element
+	
+	// Shuffle Array 
+	while(myArray.length != 0){
+		let randomIndex = Math.floor(Math.random() * myArray.length)
+		currentIndex = -1
+		
+		let temp = array[currentIndex]
+		array[currentIndex] = array[randomIndex]
+		array[randomIndex] = temp
+	}
+}
+================================================================================
+** JSON **
+function jsonFunc(){
+	var myObj = {
+		"name": "quan",
+		"number": 15
+		"nestHobby": {sport:"Gym", chill: "Movies"}
+		setNumber: function (newNumber) { // setNumber(newGear){
+			this.number = newNumber;
+		}
+	}
+	Object.freeze(myObj) // cannot modify the object
+	myObj["location"] = "Penang" // add property
+	delete["location"] // delete property
+	myObject.hasOwnProperty(location)// check property
+	console.log(myObj.name)
+	console.log(myObj["name"])
+	var myStringObj = JSON.stringtify(myObj)
+	var myPasedObj = JSON.parse(myStringObj)
+	const { name: CopyName, number: CopyNumber } = myObject // copy object value to variables
+	const { name: CopyName, number: {sport: favouriteHobby} } = myObject
+	demoNotPasstoMuch(myObj)
+}
+
+function demoNotPasstoMuch({name, number}) => {{name, number}} // it mean return similar object, no need {name=name, number=number}
+================================================================================
+** Looping | Random**
+function myLoopFunc{
+	var myArr = [1,2,3]
+	
+	int i= parseInt('10011', 2) // binary to base 10
+	while(i < 2){
+		myArray.unshift(i)
+		i++;
+	}
+	
+	do{
+		console.log(i)
+	}while(i<2)
+	
+	for(let i=0;i<10;i+=2){ // Even number for a loops, change i=1 for odd number
+		myArr.push(i)
+	}
+	for(let i=10;i>0;i-=2){ // Count backward
+		myArr.push(i)
+	}
+	
+	Math.floor(Math.random() * 10) // in range 10, floor to round off
+	Math.floor(Math.random() * (Max - Min + 1)) + Min // random num in defined range
+}
+================================================================================
+** Arrow Function **
+var magic = function(){return "Hi"}
+var magic = function(){}
+
+arr1.concat(arr2)
+arr1.filter(num => Number.isInteger(num) && num > 0).map(x => x * x)
+
+*** make accepted number as an array ***
+function myArgs(...args){} // The "..." is mean spread/rest operator, unpack element, allow iterable such as array or string to expand in place
+mtArgs(1,2,3)
+================================================================================
+** Class **
+class Animal{
+	constructor(age){this.Age = age}
+	
+	getAge(){return this.Age}
+	setAge(age){this.Age = age}
+}
+
+var Cat = new Animal(1)
+================================================================================
+** Callback **
+sum(1,2,display) // a function passed as an argument to another function, ensure function not run before other complete
+function display(){}
+================================================================================
+** Others **
+arr1 = [...arr2] // copy array, this way present 1 side change affect another  
+const [,, ...arr] = arr1 // mean remove first 2 element in array
+const [z,x,,y] = [1,2,3,4,5] // output: 1,2,4
+const greeting = `Hello, ${person.name}` // Template Literal: allow string to have variable, important use in write HTML
+
+export {dumbFunc}
+export default {mustGiveOutFunc} // use when wnat sure, no matter how given thing are export from the file
+import {dumbFunc} from "./fileName"
+
+var threeSecond = setTimeOut(()=>{ // setInterval(runMeRepeatThreeSecond,3000)
+	console.log("I had wait 3 second")
+}, 3000)
+
+clearTimeOut(threeSecond)
+console.log(date.toLocaleString()) // date.getFullYear().getDate().getDay().getMonth().getHours().getMinutes().getSeconds().getMilliseconds()
+
+// promise = promise to return something in future
+const myPromise = new Promise((resolve,reject)=>{
+	let fileLoaded = true;
+	if(fileLoaded)
+		resolve("File is loaded")
+	else
+		reject("File is rejected")
+})
+
+myPromise.then(value => console.log(value)).catch(error => console.log(error));
+
+// async = let function return a promise
+// await = make async function wait for a promise
+async function loadFunc() => {
+		... return ... throw
+}
+let message = await loadFunc()
+
+// Key Interaction
+window.addEventListener("keydown", (event) => {
+	switch(event.key){
+		case ... ArrowDown, ArrowUp, Arrowleft, ArrowRight
+	}
+})
+
+
+

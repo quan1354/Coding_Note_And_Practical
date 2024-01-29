@@ -1,0 +1,191 @@
+ #include <stdlib.h>
+#include <iostream>
+
+
+using namespace std;
+typedef unsigned short int USHORT;
+
+class SimpleCat {
+public:
+	SimpleCat() { cout << "Constructor called.\n"; this->itsAge = 1; this->itsWeight = new int(10); };
+	~SimpleCat() { cout << "Destructor called.\n"; delete itsWeight; };
+	int GetAge() const { return itsAge; }
+	void SetAge(int age) { itsAge = age; }
+	int GetWeight() const { return *itsWeight; }
+	void SetWeight(int weight) { *itsWeight = weight; }
+	
+private:
+	int itsAge;
+	int *itsWeight;
+};
+
+class Rectangle
+	 {
+	 public:
+		 Rectangle();
+		 ~Rectangle();
+		 void SetLength(int length) { itsLength = length; }
+		 int GetLength() const { return itsLength; }
+		
+	     void SetWidth(int width) { itsWidth = width; }
+		 int GetWidth() const { return itsWidth; }
+		
+	 private:
+		int itsLength;
+		int itsWidth;
+	};
+
+Rectangle::Rectangle() :
+	 itsWidth(5),
+	 itsLength(10)
+	 {}
+Rectangle::~Rectangle()
+	 {}
+
+
+int main() {
+	/* Chapter 8.1 : Demostrate address of variable 
+	Pointer = variable that store address.
+	unsigned = only allow store non-negative value
+	Everytime run, address different.
+	short = 2 bytes, long = 4 bytes
+	pointer with no initialize called wild pointer
+	Indirection = accessing the value at the address held by a pointer. contain 2 ways.
+	U assign value to pointer, is mean change the address holding of value.
+	 stack is used for storing function call information and local variables, while the heap is used for dynamic memory allocation.
+	*/
+	unsigned short shortVar = 5;
+	unsigned long longVar = 65535;
+	long sVar = -65535;
+	int* ptrInteger = 0; 
+
+	cout << "shortVar:\t" << shortVar;
+	cout << "Address of shortVar:\t";
+	cout << &shortVar << "\n";
+
+	cout << "longVar:\t" << longVar;
+	cout << " Address of longVar:\t";
+	cout << &longVar << "\n";
+
+	cout << "sVar:\t" << sVar;
+	cout << " Address of sVar:\t";
+	cout << &sVar << "\n";
+
+	unsigned short int howOld = 50;
+	unsigned short int* pAge = &howOld;
+	*pAge = 5;
+	cout << *pAge << "\n";
+
+	/* Chapter 8.2: Manipulating data by using pointers | What is store in pointer ? 
+		typeof = make a name as the data type.
+		new = allocate memory on the free store, compiler knows how much memory is required, it return address. must assign to pointer.
+		WARNING: if new unable allocate memory due to outlimit, it will return null pointer, so u have to always check null
+		WARNING: When u delete the pointer, since pointer can be resue, u again delete will program clash, good practice to assign the pointer to null or 0
+		DO: (*) to access the data stored at the address in a pointer.
+		DO: initialize all pointers either to a valid address or to null (0).
+		DO: remember the difference between the address in a pointer and the value at that address.
+		Why Use?
+		- manage data on the free store.
+		- access class member data and function.
+		- pass variable by reference, to function, overcome local variable restore.
+		
+	*/
+
+	// Lesson: main to just show assign to pointer of address is same with been assign of variable. value change between each, will affect each other. 
+	USHORT myAge, yourAge = 10; 
+	myAge = 5;
+	cout << "myAge: " << myAge << "\n";
+	pAge = &myAge; // assign address of myAge to pAge
+	cout << "*pAge: " << *pAge << "\n\n";
+	*pAge = 7; // sets myAge to 7
+	cout << "*pAge: " << *pAge << "\n";
+	cout << "myAge: " << myAge << "\n\n";
+	myAge = 9;
+	cout << "myAge: " << myAge << "\n";
+	cout << "*pAge: " << *pAge << "\n";
+	cout << "&pAge: " << &pAge << "\n";// This will print the pointer it self address
+
+	unsigned short int* pPointer = new unsigned short int;
+	*pPointer = 72;
+	delete pPointer;// important: return memory to free store, freeing up the memory whose address is stored in the pointer.
+	pPointer = new unsigned short int;
+	*pPointer = 84;
+
+
+	/* 8.4) How allocate pointer in HEAP work ? | 
+		this point to individual object.
+		stray/wild/dangling pointer = created when call delete on a pointer--thereby freeing the memory that it point to, and later use that pointer again without reassign it, crash. 
+		stormping on pointer
+		const to function = any change within the function will caused error
+		const this pointer = can be used only with const member functions
+		 Pointers should be initialized to point to an object or to null (0).
+		 u free that memory by calling the delete keyword on the pointer. delete frees the memory, but
+		 it doesn't destroy the pointer. Therefore, you must reassign the pointer after its memory has been freed.
+	*/
+	// show allocate and delete pointer
+	int localVariable = 5;
+	int* pLocal = &localVariable;
+	int* pHeap = new int;
+	if (pHeap == NULL)
+	{
+		cout << "Error! No memory for pHeap!!";
+		return 0;
+	}
+	*pHeap = 7;
+	cout << "localVariable: " << localVariable << "\n";
+	cout << "*pLocal: " << *pLocal << "\n";
+	cout << "*pHeap: " << *pHeap << "\n";
+	delete pHeap; // important
+	pHeap = new int; // important
+	if (pHeap == NULL)
+		{
+		cout << "Error! No memory for pHeap!!";
+		return 0;
+	}
+	*pHeap = 9;
+	cout << "*pHeap: " << *pHeap << "\n";
+	delete pHeap;
+	SimpleCat Frisky;
+	SimpleCat* pRags = new SimpleCat;
+	cout << (*pRags).GetAge() << "\n";
+	cout << pRags->GetAge() << "\n";
+	cout << pRags->GetWeight() << "\n";
+	delete pRags;
+
+	// Demo stray Pointer
+	USHORT* pIntStray = new USHORT;
+	*pIntStray = 10;
+	delete pIntStray;
+	// < - important: must create new just can use pIntStray pointer again.
+	long* pLongStray = new long;
+	*pLongStray = 90; // cause assign same address location with pIntStray
+	//*pIntStray = 20;
+	cout << "*pLong: " << *pLongStray << endl; // print a messed up number
+	cout << "&pLong: " << &pLongStray << endl; // output it's pointer address
+	cout << "pLong: " << pLongStray << endl; // output it's value address (in long, 90 store of location)
+	delete pLongStray;
+	const int* pOne;
+
+	// Constant Pointer
+	const int* pConstOne; // fix to change value
+	int* const pConstTwo = new int; // allow change value, but can't point to any other location
+	const int* const pConstThree = new int; // fix to change value, can't point to any other location
+
+	Rectangle* pRect = new Rectangle;
+	const Rectangle * pConstRect = new Rectangle;
+	Rectangle* const pConstPtr = new Rectangle;
+	
+	cout << "pRect width: " << pRect->GetWidth() << " feet\n";
+	cout << "pConstRect width: " << pConstRect -> GetWidth() << " feet\n";
+	cout << "pConstPtr width: " << pConstPtr->GetWidth()<< " feet\n";
+	pRect->SetWidth(10);
+	//pConstRect->SetWidth(10);
+	pConstPtr->SetWidth(10);
+	cout << "pRect width: " << pRect->GetWidth() << " feet\n";
+	cout << "pConstRect width: " << pConstRect -> GetWidth() << " feet\n";
+	cout << "pConstPtr width: " << pConstPtr->GetWidth()<< " feet\n";
+
+	return 0;
+}
+
+

@@ -1,0 +1,87 @@
+Python
+- interpreted language = execute statement line by line, no searate compile
+- source code convert into bytecode then executed by Python VM
+- fast to develop = code no need compiled and built. 
+- readily changed and executed. But still slow than C
+- dynamic typed lanaguage = "1" + 2
+- data type checked before execution, check during execution
+- need indentation = provide readibility to code
+
+- pickling - convert an object in memory to a byte stream
+- unpickling - Loading a pickled file back into Python
+
+- List more memory than Tuple
+- object have mutable and immutable
+
+- Generator = return an iterator that produces sequences of values one at the time. 
+- use yield keyword produce values, one number at a time, not all.
+- save memory process sequence of value without save initial value
+- useful when dealing with large datasets and perform lazy evaluation, 
+
+- multiple inheritance = class inherent from multiple parent.
+- Decorators = function that add extra functionality to another function, without change other function code.
+
+def timing_decorator(original_function):
+    def wrapper_function(*args, **kwargs):
+        start_time = time.time()
+        result = original_function(*args, **kwargs)
+        end_time = time.time()
+        print(f"{original_function.__name__} took {end_time - start_time} seconds to run")
+        return result
+    return wrapper_function
+
+@timing_decorator
+def some_function():
+    # Simulate a time-consuming operation
+    time.sleep(2)
+
+some_function()
+
+- Monkey Patching = dynamic modification of class or module at runtime.
+- numpy than list ? matrix, faster.
+- Scipy than numpy ? more fully-featured version of linear algebra
+
+2) What keywords in Python
+- 33 keywords.
+
+3) How assign variable in python ?
+- Singular and Multiple value. a,b = 1,2
+
+4) Python aperator ?
+relational, arithematic, logical, assignment, comparison operator
+
+5) Function ?
+- Block of code, user defined, inbuild and lambda function
+
+6) Namespace = collection of current defined symbolic names along with information about object that each name reference
+
+7) Scope Resolution = determines how variables and names are resolved within the code.
+
+8) python path = where to find various libraries and applications.
+
+9) The end parameter is used to specify a string that will be printed after the output. However, the sep parameter is used as a separator between the items that you want to print.
+
+def compareString(str1, str2):
+	result = ""
+	
+	for char in str1:
+		if char in str2:
+			result += char
+			
+	return result
+	
+def computePowerWithLoop(base_value, exponent):
+	result = 1
+	for i in range(exponent):
+		result *= base_value
+	return result
+
+def computerPowerWithRecursion(base_value, exponent):
+	if exponent == 0:
+		return 1
+	return base_value * computerPowerWithRecursion(base_value, exponent - 1)
+
+
+
+
+ 

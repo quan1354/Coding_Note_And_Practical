@@ -1,0 +1,95 @@
+#include <stdlib.h>
+#include <iostream>
+
+using namespace std;
+/*
+● What references are.
+● How references differ from pointers.
+● How to create references and use them.
+● What the limitations of references are.
+● How to pass values and objects into and out of functions by reference.
+*/
+
+// use pointer is *  reference is use &
+// pointer for change need * while reference after passed with & no need.
+void swap(int &x, int &y) { // *x * y
+	int temp = x; // *x;
+	x = y; // *x = *y;
+	y = temp; // *y = temp;
+}
+
+// passing objects by reference
+class SimpleCat {
+	public:
+		SimpleCat();
+		SimpleCat(SimpleCat&);
+		~SimpleCat();
+		int GetAge() const { return itsAge; }
+		void SetAge(int age) { itsAge = age; }
+	private:
+		int itsAge;
+};
+
+SimpleCat::SimpleCat() { cout << "Simple Cat Constructor ...\n"; itsAge = 1; }
+SimpleCat::SimpleCat(SimpleCat&) { cout << "Simple Cat Copy Constructor...\n"; }
+SimpleCat::~SimpleCat() { cout << "Simple Cat Destructor...\n"; }
+// Const Pointer
+const SimpleCat* const FunctionTwo(const SimpleCat* const theCat) {
+	cout << "Function Two. Returning...\n";
+	cout << "Frisky is now " << theCat->GetAge() << "years_old \n";
+	//theCat->SetAge(8);
+	return theCat;
+}
+
+/*
+	Chapter 9.1: What is reference
+	Reference = make another name to the target. 
+*/
+int main() {
+	// You can see, one side change, another side change as well, include address
+	/*
+		DO: use references to create an alieas to an object.
+		DO: initialize all reference
+		DON'T: try to reassign a reference
+		DON'T: confuse address and reference operator
+		DON'T: Initialize object class to reference. 
+		DON'T: Initialize null to reference, it possible erase all files on disk.
+		DO: use const to protect references and pointers whenever possible. 
+		DON'T return a reference to a local object
+		DO: pass parameters and return by reference whenever possible.
+
+		C++ strong prefer reference to pointers. Reference: cleaner, easier use, hidden information.
+		Reference can't be reassigned and null, so use pointer for point first to one object and then another.
+	*/
+	int intOne;
+	int& rSomeRef = intOne;
+
+	intOne = 5;
+	cout << "intOne:" << intOne << endl;
+	cout << "rSomeRef:" << rSomeRef << endl;
+
+	rSomeRef = 7;
+	cout << "intOne:" << intOne << endl;
+	cout << "rSomeRef:" << rSomeRef << endl;
+	cout << "intOne:" << &intOne << endl;
+	cout << "rSomeRef:" << &rSomeRef << endl;
+
+	/*Using Address of Operator & on References*/
+	/*Passing by reference using pointer*/
+	int x = 5, y = 10;
+	swap(x, y);
+	cout << x << "\n" << y << endl;
+
+	/*Passing a const pointer*/
+	cout << "Making a cat...\n";
+	SimpleCat Frisky;
+	cout << "Frisky is " << Frisky.GetAge() << " years _old\n" << endl;
+	Frisky.SetAge(5);
+	cout << "Frisky is " << Frisky.GetAge() << " years _old\n" << endl;
+	FunctionTwo(&Frisky);
+	cout << "Frisky is " << Frisky.GetAge() << " years _old\n" << endl;
+	return 0;
+}
+
+
+

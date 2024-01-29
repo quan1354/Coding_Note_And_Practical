@@ -1,0 +1,64 @@
+============= Layout ================
+- Float (X)
+- Flex (X)
+- Grid (X)
+- Media (X)
+
+============= Others ================
+- Position (X)
+- Table (X)
+- Form (X)
+============= Float =================
+clearfix = want fix image into the container
+
+============= Media =================
+Extra Small Devices (Mobile Phones):
+320 pixels: Targeting smaller mobile phones.
+"480" pixels: Targeting larger mobile phones.
+Small Devices (Tablets):
+600 pixels: Targeting smaller tablets.
+"768" pixels: You already have this - it's typically used for tablets and large phones in landscape mode.
+Medium Devices (Small Laptops/Desktops):
+"992" pixels: This is a common breakpoint for small laptops or large tablets/desktops.
+Large Devices (Laptops/Desktops):
+"1200" pixels: This breakpoint is often used for standard laptops and desktops.
+1440 pixels: Targeting larger desktops, useful for high-resolution or widescreen monitors.
+Extra Large Devices (Large Desktops):
+1600 pixels and above: For very large screens.
+
+============= Flex =================
+Main Axes = X
+Cross Axes = Y
+
+Flex Container Properties:
+display, flex, flex-direction, flex-wrap, flex-flow,
+justify-content, align-items, align-content, gap
+
+align-items - Align Items along cross axis (look in each row individually)
+align-content - Align lines of content along "Cross Axes" and distribute extra spacing in parent container (need muntiple content just can justify)
+align-item use more than align-content 
+
+Flex Item Properties:
+order, flex-grow, flex-shrink, flex-basic, flex, align-self
+============= Grid =================
+[Nothing to say ...]
+============= Position =============
+static: view die at there
+relative: u can use top bottom left right adjust view (still reserve space)
+absolute: pull out from overall view, not affect other views (no longer reseve any space)
+
+How can absolute from entire viewport ?
+child absolute, mother put relative.
+
+fixed: the view is there never move, whatever u do, like scroll down and more.
+How widhout width 100% extend it ?
+set left and right 0.
+
+static: not gonna hide the content like fixed do. there follow u scroll ?
+How make it there when scrolling, like steply navigation of header and side navbar?
+sticky
+
+Why sticky not work ?
+must put at div instead of child element.
+
+

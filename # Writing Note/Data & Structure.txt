@@ -1,0 +1,60 @@
+Data Structure = named location that can used to store and organize data
+Algorithm = a collection of steps to solve problem
+Why ?
+- write code both time and memory efficient
+
+public static void main(String[] args){	
+	// Stack = LIFO data Structure. Push, Pop, Peek (last element), Empty, Search
+	Stack<String> stack = new Stack<String>();
+	
+	// Queues = FIFO data structure. It's interface (template) not class. 
+	// 2 classes implement queue = Linkedlist, Priority Queue.
+	// Queue extend Collection class: size, contains 
+	// They useful for Keyboard Buffer, Printer Queue, LinkedLists, PriorityQueues, Breadth-First search
+	
+	Queue<String> queue = new Linkedlist<String>(); // Enqueue, offer, Dequeue, poll, element, peek (first element)
+	Queue<String> queue = new PriorityQueue<String>(Collections.reverseOrder()); // auto sort element in queue.
+	
+	// LinkedList = long chain of node, address to next node, last element is null
+	// insert = new node address map to next node, front node map to it
+	// Delete = deleted node of front node, direct map to it's next
+	// bad access, search O(n)
+	// doubly Linkedlist can traverse from head to tail or tail to head in reverse. used more memory.
+	// Array delete/insert center of element need migrate all element after it.
+	// Each node know it's previous and next
+	// advantage - Dynamic Data Structure, O(1), Low memory waste
+	// Uses For - GPS navigation, music playlist
+	// disadvantage - memory need store address, no index to random access data, Access/Search is time consump O(n)
+	// push, pop, add, remove
+	// addFirst, offerFist, addLast, offerLast, removeFirst, pollFirst, removeLast, pollLast, getFirst, peekFirst, getLast, peekLast
+	LinkedList<String> linkedlist = new Linkedlist<String>(); 
+	
+	// Dynamic Array = 
+	= random access take O(1)
+	= address is ordered, no jump here there. 
+	= array size flexible, no fixed. 
+	= JAVA = ArrayList. C++ = Vector, JavaScript = Array, Python = List.
+	= Waste Memory than LinkedList, Shifting element take O(n). Expand or Shrink array O(n)
+	// Static Array 
+	= Random access take O(1). 
+	= Search O(n)
+	= Dis, Fixed size
+	ArrayList<String> arrayList = new ArrayList<String>();
+	
+	// ArrayList vs Linkedlist
+	// L better large dataset, A flexible
+	= Access Time Diff
+	- Get first element. A > L
+	- Get 500th element. A > L
+	- Get last element. A > L
+	= remove
+	- remove first element. L > A (A need shift)
+	- remove 500th element. A > L (L need navigate to middle to delete)
+	- remove last element. A > L (A no need shift more)
+	
+	// Big O notation
+	= Describe performance of algorithm, as data amount increase
+	= Machine Independent (# step to complete)
+	= Ignore small operation O(n+1) -> O(n)
+	= n is amount of data (It's variable like x)
+}

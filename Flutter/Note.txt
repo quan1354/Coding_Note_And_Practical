@@ -1,0 +1,43 @@
+=============== How Setup Flutter =============================
+1) Install Flutter SDK (tools). Then put in desired location
+2) environment variable for bin path C:\flutter\bin
+3) VSC extension (Flutter, Dart, bloc, Tokyo night)
+4) flutter docker
+5) where flutter
+6) flutter create <learn_flutter>
+
+=============== KeyboardKey ===================================
+Select Runing Device = Ctrl + Shift + P
+
+=============== Note ==========================================
+Widget Catalog: https://docs.flutter.dev/ui/widgets
+Library: https://api.flutter.dev/flutter/dart-math/dart-math-library.html
+Package: https://pub.dev/
+Cookbook: https://docs.flutter.dev/cookbook
+
+1) What is HotRestart and HotReload in Flutter ?
+HotReload:
+- instantly see the effects of code changes, without needing to restart it.
+- updates running app, but doesn't restart it, and the app state is preserved.
+- particularly useful for tweaking UI elements
+
+HotRestart:
+- more extensive than Hot Reload. start at run build method.
+- Resets the Flutter app and rebuilds the entire widget tree, effectively restarting the app.
+- Still much faster than a full restart. When trigger Hot Restart, the app's state is not preserved.
+- useful when changes made to the app's state or initialization code need to be tested,  
+- as it provides a clean start without completely stopping and restarting the development server.
+
+Expand:
+enable fill up all space 
+
+Key:
+to track state of widget, especially widgets are moving around in widget tree
+
+final:
+only set 1 then can't change anymore
+=============== Question ==========================================
+1) How run Flutter project in Android Studio ?
+2) How change apps icons ?
+
+
