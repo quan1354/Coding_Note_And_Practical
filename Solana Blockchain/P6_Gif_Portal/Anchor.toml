@@ -1,0 +1,19 @@
+[toolchain]
+
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+p6_git_portal = "GVicY3YM3PivZq8AAi9TuJhcQECGU5c1rfc9utMogmdB"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "devnet"
+wallet = '~\.config/solana/id.json'
+
+[scripts]
+test = "node tests/p6_git_portal.js"
+
